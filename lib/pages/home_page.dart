@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/custom_app_bar.dart';
+import '../widgets/widgets.dart';
+import '../extensions.dart';
 
 const activityIcons = [
   Icons.music_note_outlined,
@@ -19,15 +20,6 @@ const activityTitles = [
   "5 new notifications",
 ];
 const activitySubTitles = ["2 hours ago", "5 hours ago", "1 day ago"];
-
-extension OnWidgetExtension on Widget {
-  Container bottomGap([double gap = 16.0]) {
-    return Container(
-      margin: EdgeInsets.only(bottom: gap),
-      child: this,
-    );
-  }
-}
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -135,7 +127,7 @@ class HomePage extends StatelessWidget {
                 return Row(
                   spacing: 8,
                   children: [
-                    _bodyIconContainer(
+                    customIconContainer(
                       icon: activityIcons[index],
                       color: activityColors[index],
                     ),
@@ -179,7 +171,7 @@ class HomePage extends StatelessWidget {
         child: Row(
           spacing: 8,
           children: [
-            _bodyIconContainer(isFirst: true, color: color, icon: icon),
+            customIconContainer(isFirst: true, color: color, icon: icon),
             Column(
               crossAxisAlignment: .start,
               children: [Text(title), Text(number)],
@@ -187,21 +179,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _bodyIconContainer({
-    required IconData icon,
-    required MaterialColor color,
-    bool isFirst = false,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: isFirst ? color : color.shade100,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Icon(icon, size: isFirst ? 20 : 14, color: isFirst ? null : color),
     );
   }
 }
