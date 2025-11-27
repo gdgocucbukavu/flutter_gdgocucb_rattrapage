@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/widgets.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -44,7 +46,7 @@ class NotificationScreen extends StatelessWidget {
           const Divider(height: 1),
           Expanded(
             child: ListView(
-              children: const [
+              children: [
                 NotificationTile(
                   icon: Icons.music_note,
                   iconColor: Colors.purple,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/widgets.dart';
+
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
 
@@ -136,7 +138,7 @@ class WeatherScreen extends StatelessWidget {
                   borderRadius: .circular(16),
                 ),
                 padding: const EdgeInsets.all(16),
-                child: const Column(
+                child: Column(
                   children: [
                     ForecastRow(
                       day: 'Mon',
@@ -144,14 +146,14 @@ class WeatherScreen extends StatelessWidget {
                       high: '25°',
                       low: '18°',
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ForecastRow(
                       day: 'Tue',
                       icon: Icons.wb_sunny_outlined,
                       high: '26°',
                       low: '19°',
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ForecastRow(
                       day: 'Wed',
                       icon: Icons.cloud_outlined,

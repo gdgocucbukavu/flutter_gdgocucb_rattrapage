@@ -15,7 +15,7 @@ class ForecastRow extends StatelessWidget {
   });
 
   @override
-  Widget build(Buildontext context) {
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: .spaceBetween,
       children: [
