@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gdgocucb_rattrapage/pages/contacts_page.dart';
+import 'package:flutter_gdgocucb_rattrapage/router/routes_config.dart';
+import 'package:flutter_gdgocucb_rattrapage/router/routes_names.dart';
 
 import '../widgets/widgets.dart';
 import '../extensions.dart';
@@ -62,16 +65,26 @@ class HomePage extends StatelessWidget {
             spacing: 16,
             children: [
               _bodyRowContainer(
+                context,
                 color: Colors.blue,
                 icon: Icons.people_outline,
                 title: "Contact",
                 number: "248",
+                onTap: () {
+                  // goRouter.pushNamed(RoutesNames.contacts );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ContactsPage()),
+                  );
+                },
               ),
               _bodyRowContainer(
+                context,
                 color: Colors.orange,
                 icon: Icons.music_note_outlined,
                 title: "Playlist",
                 number: "32",
+                onTap: () {},
               ),
             ],
           ).bottomGap(),
@@ -154,29 +167,34 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _bodyRowContainer({
+  Widget _bodyRowContainer(
+    dynamic context, {
     required String title,
     required String number,
     required IconData icon,
     required MaterialColor color,
+    required void Function()? onTap,
   }) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: color.shade100,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color, width: 0.5),
-        ),
-        child: Row(
-          spacing: 8,
-          children: [
-            customIconContainer(isFirst: true, color: color, icon: icon),
-            Column(
-              crossAxisAlignment: .start,
-              children: [Text(title), Text(number)],
-            ),
-          ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: color.shade100,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: color, width: 0.5),
+          ),
+          child: Row(
+            spacing: 8,
+            children: [
+              customIconContainer(isFirst: true, color: color, icon: icon),
+              Column(
+                crossAxisAlignment: .start,
+                children: [Text(title), Text(number)],
+              ),
+            ],
+          ),
         ),
       ),
     );
