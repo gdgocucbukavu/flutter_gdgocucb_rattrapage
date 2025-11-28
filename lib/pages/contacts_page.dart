@@ -13,7 +13,7 @@ class ContactsPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      appBar: customAppBar(title: "Contacts", showSearchBar: true),
+      // appBar: customAppBar(title: "Contacts", showSearchBar: true),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

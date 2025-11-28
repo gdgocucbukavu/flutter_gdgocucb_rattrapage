@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gdgocucb_rattrapage/pages/host_page.dart';
 import 'package:flutter_gdgocucb_rattrapage/pages/profile_page.dart';
 import 'package:flutter_gdgocucb_rattrapage/router/routes_config.dart';
 
@@ -13,9 +14,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: goRouter,
+    home: HostPage(),
     );
   }
 }
