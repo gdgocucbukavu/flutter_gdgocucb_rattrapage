@@ -1,30 +1,6 @@
-class ContactModel {
-  final String firstName;
-  final String lastName;
-  final String phoneNumber;
-  final String email;
-  final String location;
-  final String company;
-  final String birthday;
+import '../models/contact_model.dart';
 
-  bool isFavorite;
-
-  ContactModel({
-    required this.firstName,
-    required this.lastName,
-    required this.phoneNumber,
-    required this.email,
-    required this.location,
-    required this.company,
-    required this.birthday,
-    this.isFavorite = false,
-  });
-
-  String get fullName => '$firstName $lastName';
-  String get initials => '${firstName[0]}${lastName[0]}'.toUpperCase();
-}
-
-List<ContactModel> contacts = [
+List<ContactModel> localContactsData = [
   ContactModel(
     firstName: 'Justin',
     lastName: 'Bashige',
@@ -45,10 +21,19 @@ List<ContactModel> contacts = [
     birthday: 'June 12, 1992',
   ),
   ContactModel(
+    firstName: 'Cédro',
+    lastName: 'Bisimwa',
+    phoneNumber: '+243 97 234 5678', // Numéro RDC (Fake)
+    email: 'cebistmus@gmail.com',
+    location: '45 Market St, Bunia, DRC',
+    company: 'GDG on Campus UCB',
+    birthday: 'June 12, 1992',
+  ),
+  ContactModel(
     firstName: 'Gancia',
     lastName: 'Maya',
     phoneNumber: '+243 89 345 6789', // Numéro RDC (Fake)
-    email: 'nciamaya@gmail.com',
+    email: 'ganciamaya@gmail.com',
     location: '7 River Rd, Goma, DRC',
     company: 'GDG on Campus UCB',
     birthday: 'January 3, 1998',

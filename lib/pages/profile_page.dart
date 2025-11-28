@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/contact_model.dart';
+import '../data/data.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -69,22 +68,22 @@ class ProfilePage extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        contacts.first.firstName[0] +
-                            contacts.first.lastName[0],
+                        localContactsData.first.firstName[0] +
+                            localContactsData.first.lastName[0],
                         style: TextStyle(color: Colors.white, fontSize: 25),
                       ),
                     ),
                   ),
                   Text(
-                    "${contacts.first.firstName} ${contacts.first.lastName}",
+                    "${localContactsData.first.firstName} ${localContactsData.first.lastName}",
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   Text(
-                    contacts.first.email,
+                    localContactsData.first.email,
                     style: TextStyle(fontWeight: .w500, color: Colors.white),
                   ),
                   Text(
-                    contacts.first.location,
+                    localContactsData.first.location,
                     style: TextStyle(fontWeight: .w500, color: Colors.white),
                   ),
                 ],

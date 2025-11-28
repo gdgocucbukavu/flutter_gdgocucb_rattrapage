@@ -192,26 +192,24 @@ class WeatherScreen extends StatelessWidget {
 
   Widget _buildGridCard(
     IconData icon,
-    Color color,
+    MaterialColor color,
     String label,
     String value,
   ) {
     return Container(
       padding: .all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withAlpha(25),
         borderRadius: .circular(16),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withAlpha(50)),
       ),
       child: Row(
         children: [
-          Container(
-            padding: .all(8),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, color: Colors.white, size: 20),
+          customIconContainer(
+            icon: icon,
+            color: color,
+            isFirst: true,
+            isMeteo: true,
           ),
           const SizedBox(width: 12),
           Column(

@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 
-AppBar customAppBar({required String title, bool showSearchBar = false}) {
+AppBar customAppBar(
+  BuildContext context, {
+  required String title,
+  bool showSearchBar = false,
+}) {
   return AppBar(
     backgroundColor: Colors.blueAccent.shade200,
     title: Text(title),
     actions: [
+      if (title.toLowerCase() == "contacts")
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.search_rounded, color: Colors.white),
+        ),
       IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.search_rounded, color: Colors.white),
-      ),
-      IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/notifications");
+        },
         icon: Icon(Icons.notifications_outlined, color: Colors.white),
       ),
-      Container(
-        margin: const EdgeInsets.only(right: 8.0),
-        child: CircleAvatar(
-          child: Text("GB", style: TextStyle(fontWeight: FontWeight.bold)),
+      InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, "/profile");
+        },
+        child: Container(
+          margin: const EdgeInsets.only(right: 8.0),
+          child: CircleAvatar(
+            child: Text("JB", style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
         ),
       ),
     ],

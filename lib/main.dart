@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gdgocucb_rattrapage/pages/host_page.dart';
-import 'package:flutter_gdgocucb_rattrapage/pages/profile_page.dart';
-import 'package:flutter_gdgocucb_rattrapage/router/routes_config.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
+import 'data/data.dart';
 import 'pages/pages.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MainApp());
 }
 
@@ -16,7 +16,36 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-    home: HostPage(),
+      initialRoute: '/',
+      routes: {
+        '/notifications': (context) => NotificationScreen(),
+        '/profile': (context) => ProfilePage(),
+        '/': (context) => HostPage(),
+      },
+      onGenerateRoute: (routeSettings) {
+        // Gestion des routes dynamiques pour /contact-details-<email>
+        if (routeSettings.name?.startsWith('/contact-details-') == true) {
+          final contact = routeSettings.arguments as ContactModel?;
+          if (contact != null) {
+            return MaterialPageRoute(
+              builder: (context) => ContactDetailsPage(currentContact: contact),
+              settings: routeSettings,
+            );
+          }
+        }
+
+        // Routes statiques
+        switch (routeSettings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => HostPage());
+          default:
+            return MaterialPageRoute(
+              builder: (context) {
+                return Scaffold(body: Center(child: Text('Route not found')));
+              },
+            );
+        }
+      },
     );
   }
 }

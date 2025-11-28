@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/contact_model.dart';
+import '../data/data.dart';
 
 class ContactsPageWithSearchEngine extends StatefulWidget {
   const ContactsPageWithSearchEngine({super.key});
@@ -12,21 +12,21 @@ class ContactsPageWithSearchEngine extends StatefulWidget {
 
 class _ContactsPageWithSearchEngineState
     extends State<ContactsPageWithSearchEngine> {
-  List<ContactModel> _filtered = contacts;
+  List<ContactModel> _filtered = localContactsData;
 
   @override
   void initState() {
     super.initState();
-    _filtered = contacts;
+    _filtered = localContactsData;
   }
 
   void _updateQuery(String q) {
     final query = q.trim().toLowerCase();
     setState(() {
       if (query.isEmpty) {
-        _filtered = contacts;
+        _filtered = localContactsData;
       } else {
-        _filtered = contacts.where((c) {
+        _filtered = localContactsData.where((c) {
           final full = c.fullName.toLowerCase();
           final phone = c.phoneNumber.toLowerCase();
           final email = c.email.toLowerCase();

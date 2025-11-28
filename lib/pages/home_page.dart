@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gdgocucb_rattrapage/pages/contacts_page.dart';
-import 'package:flutter_gdgocucb_rattrapage/router/routes_config.dart';
-import 'package:flutter_gdgocucb_rattrapage/router/routes_names.dart';
 
 import '../widgets/widgets.dart';
 import '../extensions.dart';
@@ -30,7 +28,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

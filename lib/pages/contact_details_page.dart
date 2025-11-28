@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gdgocucb_rattrapage/extensions.dart';
-import 'package:flutter_gdgocucb_rattrapage/models/contact_model.dart';
+import 'package:flutter_gdgocucb_rattrapage/data/models/contact_model.dart';
 import 'package:flutter_gdgocucb_rattrapage/widgets/widgets.dart';
 
 // QUICK MENUS CONSTANTES
@@ -57,6 +57,9 @@ class ContactDetailsPage extends StatelessWidget {
     ];
 
     return Scaffold(
+      //       Récupère le contact depuis les arguments si non passé directement
+      // final contact = currentContact ??
+      //                 ModalRoute.of(context)!.settings.arguments as ContactModel;
       appBar: AppBar(title: Text("Contact Details")),
       body: ListView(
         children: [
