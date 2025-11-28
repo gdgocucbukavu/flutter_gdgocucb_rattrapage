@@ -22,4 +22,9 @@ class ContactModel {
 
   String get fullName => '$firstName $lastName';
   String get initials => '${firstName[0]}${lastName[0]}'.toUpperCase();
+  void changeFavoriteState() {
+    isFavorite = !isFavorite;
+  }
 }
+
+// ValueNotifier<ContactModel> dynamicContactModel = ValueNotifier(_value);

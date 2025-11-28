@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../data/data.dart';
+import '../routes/routes.dart';
 
-class ContactsPage extends StatelessWidget {
+class ContactsPage extends StatefulWidget {
   const ContactsPage({super.key});
 
   @override
+  State<ContactsPage> createState() => _ContactsPageState();
+}
+
+class _ContactsPageState extends State<ContactsPage> {
+  @override
   Widget build(BuildContext context) {
-    final favoriteContacts = localContactsData
-        .where((contact) => contact.isFavorite)
-        .toList();
+    final favoriteContacts = localContactsData.where((contact) {
+      setState(() {});
+      return contact.isFavorite;
+    }).toList();
 
     return Scaffold(
       body: Padding(
@@ -90,7 +97,7 @@ class ContactsPage extends StatelessWidget {
   }
 }
 
-class ContactCardView extends StatelessWidget {
+class ContactCardView extends StatefulWidget {
   const ContactCardView({
     super.key,
     required this.currentContact,
@@ -101,12 +108,18 @@ class ContactCardView extends StatelessWidget {
   final bool isFavorite;
 
   @override
+  State<ContactCardView> createState() => _ContactCardViewState();
+}
+
+class _ContactCardViewState extends State<ContactCardView> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        final routeName =
-            '/contact-details-${Uri.encodeComponent(currentContact.email)}';
-        Navigator.of(context).pushNamed(routeName, arguments: currentContact);
+        RoutesConfig.goToContactDetails(
+          context,
+          contact: widget.currentContact,
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
@@ -126,7 +139,7 @@ class ContactCardView extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.grey.shade200,
                   foregroundColor: Colors.black54,
-                  child: Text(currentContact.initials),
+                  child: Text(widget.currentContact.initials),
                 ),
                 Column(
                   crossAxisAlignment: .start,
@@ -134,10 +147,10 @@ class ContactCardView extends StatelessWidget {
                     Row(
                       spacing: 8,
                       children: [
-                        Text(currentContact.fullName),
-                        if (isFavorite)
+                        Text(widget.currentContact.fullName),
+                        if (widget.isFavorite)
                           Icon(
-                            currentContact.isFavorite
+                            widget.currentContact.isFavorite
                                 ? Icons.star_rounded
                                 : Icons.star_outline_rounded,
                             color: Colors.amber,
@@ -146,15 +159,15 @@ class ContactCardView extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      currentContact.phoneNumber,
+                      widget.currentContact.phoneNumber,
                       style: TextStyle(
                         color: Colors.grey.shade600,
                         fontSize: 12,
                       ),
                     ),
-                    if (!isFavorite)
+                    if (!widget.isFavorite)
                       Text(
-                        currentContact.email,
+                        widget.currentContact.email,
                         style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 12,
@@ -169,11 +182,15 @@ class ContactCardView extends StatelessWidget {
               children: [
                 Icon(Icons.phone_outlined, color: Colors.green, size: 18),
                 Icon(Icons.email_outlined, color: Colors.blue, size: 18),
-                if (!isFavorite)
+                if (!widget.isFavorite)
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        widget.currentContact.changeFavoriteState();
+                      });
+                    },
                     child: Icon(
-                      currentContact.isFavorite
+                      widget.currentContact.isFavorite
                           ? Icons.star_rounded
                           : Icons.star_outline_rounded,
                       color: Colors.amber,

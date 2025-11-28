@@ -46,18 +46,6 @@ class _ContactsPageWithSearchEngineState
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent.shade200,
-        title: Text("Home"),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications_rounded)),
-          Container(
-            margin: const EdgeInsets.only(right: 8.0),
-            child: CircleAvatar(
-              child: Text("GB", style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-          ),
-        ],
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, 80),
           child: Container(

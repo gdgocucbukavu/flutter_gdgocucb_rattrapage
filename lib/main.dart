@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gdgocucb_rattrapage/routes/routes_names.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'data/data.dart';
@@ -16,15 +17,16 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: RoutesNames.host,
       routes: {
-        '/notifications': (context) => NotificationScreen(),
-        '/profile': (context) => ProfilePage(),
-        '/': (context) => HostPage(),
+        RoutesNames.notifications: (context) => NotificationScreen(),
+        RoutesNames.profile: (context) => ProfilePage(),
+        RoutesNames.host: (context) => HostPage(),
       },
       onGenerateRoute: (routeSettings) {
         // Gestion des routes dynamiques pour /contact-details-<email>
-        if (routeSettings.name?.startsWith('/contact-details-') == true) {
+        if (routeSettings.name?.startsWith(RoutesNames.contactDetails) ==
+            true) {
           final contact = routeSettings.arguments as ContactModel?;
           if (contact != null) {
             return MaterialPageRoute(
@@ -36,7 +38,7 @@ class MainApp extends StatelessWidget {
 
         // Routes statiques
         switch (routeSettings.name) {
-          case '/':
+          case RoutesNames.host:
             return MaterialPageRoute(builder: (context) => HostPage());
           default:
             return MaterialPageRoute(

@@ -12,8 +12,19 @@ class HostPage extends StatefulWidget {
 
 class _HostPageState extends State<HostPage> {
   int pageIndex = 0;
-  List pages = [HomePage(), WeatherScreen(), ContactsPage()];
-  List<String> pagesNames = const ["Home", "Météo", 'Contacts'];
+  List pages = [
+    HomePage(),
+    WeatherScreen(),
+    ContactsPage(),
+    ContactsPageWithSearchEngine(),
+  ];
+  List<String> pagesNames = const ["Home", "Météo", 'Contacts', 'Contacts2'];
+  List<IconData> pagesIcons = const [
+    Icons.home_filled,
+    Icons.cloud_rounded,
+    Icons.contact_page,
+    Icons.contact_page_outlined,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +38,12 @@ class _HostPageState extends State<HostPage> {
             pageIndex = value;
           });
         },
-        destinations: [
-          NavigationDestination(
-            icon: Icon(Icons.home_filled),
-            label: pagesNames.first,
-          ),
-          NavigationDestination(icon: Icon(Icons.cloud), label: pagesNames[1]),
-          NavigationDestination(
-            icon: Icon(Icons.contact_mail_sharp),
-            label: pagesNames[2],
-          ),
-        ],
+        destinations: List.generate(pagesNames.length, (index) {
+          return NavigationDestination(
+            icon: Icon(pagesIcons[index]),
+            label: pagesNames[index],
+          );
+        }),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../routes/routes.dart';
+
 AppBar customAppBar(
   BuildContext context, {
   required String title,
@@ -16,13 +18,13 @@ AppBar customAppBar(
         ),
       IconButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/notifications");
+          RoutesConfig.goToNotification(context);
         },
         icon: Icon(Icons.notifications_outlined, color: Colors.white),
       ),
       InkWell(
         onTap: () {
-          Navigator.pushNamed(context, "/profile");
+          RoutesConfig.goToProfile(context);
         },
         child: Container(
           margin: const EdgeInsets.only(right: 8.0),
